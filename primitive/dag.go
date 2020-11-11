@@ -8,19 +8,20 @@ import (
 // Graph is a concurrency safe, mutable, in-memory directed graph
 type Graph struct {
 	mu        sync.RWMutex
-	nodes     *namespacedCache
-	edges     *namespacedCache
-	edgesFrom *namespacedCache
-	edgesTo   *namespacedCache
+	nodes     namespaceCache
+	edges     namespaceCache
+	edgesFrom namespaceCache
+	edgesTo   namespaceCache
 }
 
-func NewGraph() *Graph {
+// NewGraphCacheMap creates a new sync.map backed cachemap.
+func NewGraphCacheMap() *Graph {
 	return &Graph{
 		mu:        sync.RWMutex{},
-		nodes:     newCache(),
-		edges:     newCache(),
-		edgesFrom: newCache(),
-		edgesTo:   newCache(),
+		nodes:     newCacheMap(),
+		edges:     newCacheMap(),
+		edgesFrom: newCacheMap(),
+		edgesTo:   newCacheMap(),
 	}
 }
 

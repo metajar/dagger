@@ -7,7 +7,7 @@ import (
 	"sort"
 )
 
-var globalGraph = primitive.NewGraph()
+var globalGraph = primitive.NewGraphCacheMap()
 
 // NodeCount returns the total number of nodes in the graph
 func NodeCount() int {
